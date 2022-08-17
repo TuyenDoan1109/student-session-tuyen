@@ -1,7 +1,10 @@
 <?php
     session_start();
+
     $fullname = $brithday = $email = '';
     $errors = ['fullname' => '', 'brithday' => '', 'email' => ''];
+    $students = $_SESSION['students'] ?? [];
+
     if(isset($_POST['submit'])) {
         $id = ++end($_SESSION['students'])['id'];
 
@@ -36,7 +39,17 @@
             $errors['email'] = 'An email is required';
         } else {
             $email = $_POST['email'];
-            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                // Valid Email
+                // Check Email Unique
+                if(count($students) > 0) {
+                    foreach($students as $key => $student) {
+                        if($student['email'] == $email) {
+                            $errors['email'] = 'Email must be unique';
+                        }
+                    }
+                }
+            } else {
                 $errors['email'] = 'Email must be a valid email address';
             }
         }
@@ -50,6 +63,7 @@
         }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

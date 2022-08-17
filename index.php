@@ -1,12 +1,15 @@
 <?php
     session_start();
     //session_destroy();
-    $students = isset($_SESSION['students']) ? $_SESSION['students'] : [];
+    // $students = isset($_SESSION['students']) ? $_SESSION['students'] : [];
+    $students = $_SESSION['students'] ?? [];
     // $_SESSION['students'] = [
     //     ['id' => 1, 'fullname' => 'Nguyễn Thị Hào', 'brithday' => '1/1/2002', 'email' => 'hao@gmail.com'],
     //     ['id' => 2, 'fullname' => 'Nguyễn Thị Khải', 'brithday' => '2/1/2002', 'email' => 'khai@gmail.com'],
     //     ['id' => 3, 'fullname' => 'Nguyễn Thị Thắng', 'brithday' => '3/1/2002', 'email' => 'thang@gmail.com']
     // ];
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
